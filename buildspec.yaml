@@ -4,16 +4,18 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-            
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/a9v8q2x1      
   build:
     commands:
       - echo Build started on `date`
       - mvn clean install
-                 
+      - docker build -t mydemohere .
+      - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
   post_build:
     commands:
       - echo Build completed on `date`
-     
+      - docker push public.ecr.aws/a9v8q2x1/mydemohere:latest
+      - printf '[{"name":"myimagehere","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinition.json
 artifacts:
   files:
     - 'target/*.war'
