@@ -17,6 +17,6 @@ phases:
       - docker push public.ecr.aws/a9v8q2x1/mydemohere:latest
       - printf '[{"name":"myimagehere","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinitions.json
 artifacts:
-  files:
-    - 'target/*.war'
+  
+    
   discard-paths: yes
