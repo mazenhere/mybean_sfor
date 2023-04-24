@@ -13,7 +13,7 @@ phases:
       - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
   post_build:
     commands:
-      - DOCKER_BUILDKIT=1 echo Build completed on `date`
+      - echo Build completed on `date`
       - docker push public.ecr.aws/a9v8q2x1/mydemohere:latest
       - printf '[{"name":"myimagehere","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinitions.json
 artifacts:
