@@ -20,6 +20,5 @@ phases:
 
 artifacts:
   files:
-      -  imagedefinitions.json
-      - 'target/*.war'
+       - 'target/*.war'
   discard-paths: yes
