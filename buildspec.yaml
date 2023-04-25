@@ -10,7 +10,7 @@ phases:
       - echo Build started on `date`
       - mvn clean install
       - mv target/ROOT.war ROOT.war
-      - echo building the docker image...
+      - echo building the Docker image...
       - docker build -t mydemohere .
       - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
   post_build:
