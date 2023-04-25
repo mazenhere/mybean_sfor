@@ -9,15 +9,16 @@ phases:
     commands:
       - echo Build started on `date`
       - mvn clean install
+      - mv target/ROOT.war ROOT.war
       - docker build -t mydemohere .
       - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - docker push public.ecr.aws/a9v8q2x1/mydemohere:latest
-      - printf '[{"name":"myimagehere","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinition.json
-
+      - printf '[{"name":"myimagehere","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinitions.json
 artifacts:
   files:
-    - 'target/*.war'
+      -  imagedefinitions.json
+      - 'target/*.war'
   discard-paths: yes
