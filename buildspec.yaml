@@ -10,13 +10,13 @@ phases:
       - echo Build started on `date`
       - mvn clean install
       - mv target/ROOT.war ROOT.war
-      - docker build -t mydemohere .
-      - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
+      - docker build -t myrepo .
+      - docker tag myrepo:latest public.ecr.aws/a9v8q2x1/myrepo:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push public.ecr.aws/a9v8q2x1/mydemohere:latest
-      - printf '[{"name":"latest","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinitions.json
+      - docker push public.ecr.aws/a9v8q2x1/myrepo:latest
+      - printf '[{"name":"latest","imageUri":"public.ecr.aws/a9v8q2x1/myrepo"}]' > imagedefinitions.json
 
 artifacts:
   files:
