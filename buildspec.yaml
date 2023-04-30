@@ -4,19 +4,19 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/a9v8q2x1      
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 077667226722.dkr.ecr.ap-south-1.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
       - mvn clean install
       - mv target/ROOT.war ROOT.war
       - docker build -t myrepo .
-      - docker tag myrepo:latest public.ecr.aws/a9v8q2x1/myrepo:latest
+      - docker tag myrepo:latest 077667226722.dkr.ecr.ap-south-1.amazonaws.com/myrepo:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push public.ecr.aws/a9v8q2x1/myrepo:latest
-      - printf '[{"name":"latest","imageUri":"public.ecr.aws/a9v8q2x1/myrepo"}]' > imagedefinitions.json
+      - docker push 077667226722.dkr.ecr.ap-south-1.amazonaws.com/myrepo:latest
+      - printf '[{"name":"latest","imageUri":"077667226722.dkr.ecr.ap-south-1.amazonaws.com/myrepo"}]' > imagedefinitions.json
 
 artifacts:
   files:
